@@ -27,7 +27,6 @@ class DodgyDot:
     def CanMove(self, refreshSec):
         delta = time.time() - self.lastMoveTime
         if delta > refreshSec:
-            print('Can move')
             return True
         else:
             return False
@@ -117,7 +116,6 @@ def Game():
                 )
             else:
                 dot.MoveRandomly(refreshTime)
-                print("Random")
             
             dot.UpdateColor(refreshTime)
             cv2.rectangle(frame, (int(dot.x - dotRadius/2), int(dot.y - dotRadius/2)), (int(dot.x + dotRadius/2), int(dot.y + dotRadius/2)), dot.color, 2)
