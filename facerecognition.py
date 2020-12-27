@@ -14,6 +14,7 @@ class DodgyDot:
         self.y = random.randrange(0, self.height, 1)
         self.color = (0, 255, 0)
         self.danger = False
+        self.useTargeting = random.randrange(1,3,1)
 
     def GetNumWithinBounds(self, low, high, val):
         result = max(low, val)
@@ -73,7 +74,7 @@ def Game():
     dotRadius = 60
     targetVar = 100
     startingBlockCount = 5
-    useTargeting = True
+    
 
     faceCascade = cv2.CascadeClassifier(cascPath)
     cap = cv2.VideoCapture(0)
@@ -107,7 +108,7 @@ def Game():
 
 
         for dot in dots:
-            if(useTargeting and len(faces) > 0):
+            if(dot.useTargeting == 1 and len(faces) > 0):
                 index = random.randrange(0, len(faces), 1)
                 (tx, ty, tw, th) = faces[index]
                 dot.MoveNear(
@@ -118,6 +119,7 @@ def Game():
                 )
             else:
                 dot.MoveRandomly(refreshTime)
+                print("Random")
             
             dot.UpdateColor(refreshTime)
             cv2.rectangle(frame, (int(dot.x - dotRadius/2), int(dot.y - dotRadius/2)), (int(dot.x + dotRadius/2), int(dot.y + dotRadius/2)), dot.color, 2)
