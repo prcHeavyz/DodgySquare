@@ -25,7 +25,6 @@ class DodgyDot:
     # refreshSec, return true. False otherwise
     def CanMove(self, refreshSec):
         delta = time.time() - self.lastMoveTime
-        print(f'Delta is {delta} refreshSec is {refreshSec}')
         if delta > refreshSec:
             print('Can move')
             return True
@@ -80,7 +79,6 @@ def Game():
 
     if not cap.isOpened():
         raise IOError("Cannot open webcam")
-        return
     fwidth = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
     fheight = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
 
@@ -137,7 +135,6 @@ def Game():
                     ) and dot.danger:
                     playing = False
         
-        text = 'Text'
         org = (50,50)
         font = cv2.FONT_HERSHEY_COMPLEX
         color = (255,0,0)
